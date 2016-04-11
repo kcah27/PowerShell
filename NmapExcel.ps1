@@ -85,9 +85,18 @@
             
             #Contador para las hojas
             $x = 2
+
+            #Contador para Write-Progress
+            $i = 0
    
                     ForEach($dischost in $discoveredhosts)
                     {
+                    
+                    #Control de Write-Progress
+                    $i++
+
+                    Write-Progress -Activity "Espera un momento" -Status "Progreso..." -PercentComplete ($i/$WorksheetCount*100)
+                        
                         $NombreHoja = $dischost.address.addr
                         $Hoja = $Book.Worksheets.Item($x)
                         $Hoja.Name = $NombreHoja
